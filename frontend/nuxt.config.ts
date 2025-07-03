@@ -14,6 +14,11 @@ export default defineNuxtConfig({
   vite: {
     plugins: [tailwindcss()],
   },
+  runtimeConfig: {
+    public: {
+      apiUrl: process.env.VITE_API_URL,
+    },
+  },
   modules: ["@nuxtjs/i18n"],
   i18n: {
     locales: [

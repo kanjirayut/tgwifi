@@ -22,7 +22,7 @@ onMounted(async () => {
 });
 
 const onSubmit = async () => {
-  const res = await fetch("http://localhost:3001/api/log", {
+  const res = await fetch(`${useRuntimeConfig().public.apiUrl}/api/log`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
