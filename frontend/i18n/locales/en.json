@@ -1,0 +1,11 @@
+{
+  "welcome": "Welcome to Wi-Fi",
+  "action_button": "Confirm",
+  "firstname": "Name",
+  "lastname": "Surname",
+  "usernameInput": "Username",
+  "passwordInput": "Password",
+  "usernamePlaceholder": "Enter your username",
+  "passwordPlaceholder": "Enter your password",
+  "confirmCheckbox": " I have accepted the terms of service."
+}

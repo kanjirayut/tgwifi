@@ -1,0 +1,11 @@
+{
+  "welcome": "ยินดีต้อนรับสู่ Wi-Fi",
+  "action_button": "ยืนยัน",
+  "firstname": "ชื่อ",
+  "lastname": "นามสกุล",
+  "usernameInput": "ชื่อผู้ใช้งาน",
+  "passwordInput": "รหัสผ่าน",
+  "usernamePlaceholder": "ระบุชื่อผู้ใช้งาน",
+  "passwordPlaceholder": "ระยุรหัสผ่าน",
+  "confirmCheckbox": "ข้าพเจ้าได้ยอมรับเงื่อนไขการให้บริการ"
+}

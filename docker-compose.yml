@@ -1,0 +1,39 @@
+version: "3.8"
+
+services:
+  # Frontend (Nuxt3)
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - VITE_API_URL=http://backend:3001
+    depends_on:
+      - backend
+
+  # Backend (Express + Prisma)
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "3001:3001"
+    environment:
+      - DATABASE_URL=postgresql://kanjirayut:postgres@db:5432/tgwifi
+    depends_on:
+      - db
+
+  # PostgreSQL Database
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: kanjirayut
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: tgwifi
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres_data:
