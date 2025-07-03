@@ -19,7 +19,7 @@ services:
     ports:
       - "3001:3001"
     environment:
-      - DATABASE_URL=postgresql://kanjirayut:postgres@db:5432/tgwifi
+      - DATABASE_URL=postgresql://tgwifi:iklcvnfqugxe@db:5432/tgwifi
     depends_on:
       - db
 
@@ -27,8 +27,8 @@ services:
   db:
     image: postgres:16
     environment:
-      POSTGRES_USER: kanjirayut
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: tgwifi
+      POSTGRES_PASSWORD: iklcvnfqugxe
       POSTGRES_DB: tgwifi
     volumes:
       - postgres_data:/var/lib/postgresql/data
