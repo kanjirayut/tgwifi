@@ -10,6 +10,7 @@ const switchLanguage = (code: any) => {
 const ip = ref("");
 const firstname = ref("");
 const lastname = ref("");
+const checkboxRef = ref(false);
 
 onMounted(async () => {
   try {
@@ -40,6 +41,10 @@ const onSubmit = async () => {
       navigateTo("https://www.thaiairways.com/en-th/", { external: true });
     }
   }
+};
+
+const handleCheckboxChange = () => {
+  checkboxRef.value = !checkboxRef.value;
 };
 </script>
 <template>
@@ -163,6 +168,8 @@ const onSubmit = async () => {
         <input
           type="checkbox"
           class="form-checkbox text-blue-600 border-gray-300 rounded"
+          :checked="checkboxRef"
+          @change="handleCheckboxChange"
         />
         <!-- <span class="ml-2 text-white">{{ $t("confirmCheckbox") }}</span> -->
         <a
@@ -180,6 +187,7 @@ const onSubmit = async () => {
       <!-- Action Button -->
       <div class="mt-4 flex justify-center">
         <button
+          :disabled="checkboxRef === false || !firstname || !lastname"
           @click="onSubmit"
           class="px-4 py-2 w-100 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-400"
         >
@@ -189,3 +197,9 @@ const onSubmit = async () => {
     </div>
   </div>
 </template>
+
+<style>
+button:disabled {
+  background-color: antiquewhite;
+}
+</style>
