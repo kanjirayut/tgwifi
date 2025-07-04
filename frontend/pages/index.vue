@@ -180,7 +180,7 @@ const handleCheckboxChange = () => {
               ? 'https://www.thaiairways.com/th-th/content/privacy-notice/'
               : locale === 'en'
               ? 'https://www.thaiairways.com/en-th/content/privacy-notice/'
-              : 'https://www.thaiairways.com/zh-hk/content/privacy-notice/'
+              : 'https://www.thaiairways.com/zh-cn/content/privacy-notice/'
           "
           target="_blank"
           class="text-white ms-3"
