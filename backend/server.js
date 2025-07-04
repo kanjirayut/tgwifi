@@ -17,7 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Connect to MikroTik API
-const api = RouterOSAPI;
+// const api = RouterOSAPI;
 
 // Route ตัวอย่าง
 app.get("/api/log", async (req, res) => {
@@ -53,30 +53,44 @@ app.post("/api/log", async (req, res) => {
 
 // API endpoint to login user
 app.post("/api/login", async (req, res) => {
-  const { ip_address } = req.body;
-
   try {
-    await api.connect("10.50.0.1", "tgguest", "tgguest"); // MikroTik API credentials
+    // await api.connect("10.50.0.1", "tgguest", "tgguest"); // MikroTik API credentials
+
+    const API = new RouterOSAPI({
+      host: "10.50.0.1",
+      user: "tgguest", // ใส่ชื่อผู้ใช้ที่ใช้เชื่อมต่อ MikroTik
+      password: "tgguest", // ใส่รหัสผ่าน
+    });
+
+    API.connect().then(async () => {
+      // คำสั่งนี้จะดึงข้อมูลของผู้ใช้ที่เชื่อมต่อในระบบ Hotspot
+      API.write("/ip/hotspot/active/print", async (err, data) => {
+        if (err) {
+          console.error("Error:", err);
+        } else {
+          const user = data.find(
+            (user) => user.name === "TGLE1" && user.password === "tgl1234"
+          );
+
+          if (user) {
+            // Enable user after login
+            await API.write("/ip/hotspot/user/set", {
+              ".id": user[".id"],
+              disabled: false,
+            });
+            res.json({ success: true });
+          } else {
+            res.json({ success: false });
+          }
+          console.log("Active Users:", data); // แสดงข้อมูลของผู้ใช้งานที่เชื่อมต่อ
+        }
+      });
+    });
 
     // เช็ค IP address ของผู้ใช้ใน MikroTik Hotspot
-    const users = await api.write("/ip/hotspot/user/print");
+    // const users = await api.write("/ip/hotspot/user/print");
 
-    const user = users.find(
-      (user) => user.name === "TGLE1" && user.password === "tgl1234"
-    );
-
-    if (user) {
-      // Enable user after login
-      await API.write("/ip/hotspot/user/set", {
-        ".id": user[".id"],
-        disabled: false,
-      });
-      res.json({ success: true });
-    } else {
-      res.json({ success: false });
-    }
-
-    api.disconnect();
+    API.disconnect();
   } catch (error) {
     console.error("Error logging in:", error);
     res.status(500).json({ success: false, message: "Internal Server Error" });
