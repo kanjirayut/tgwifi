@@ -43,14 +43,26 @@ const onSubmit = async () => {
         username: "TGLE1",
         password: "tgl1234",
       }),
-    });
-    if (locale.value === "th") {
-      navigateTo("https://www.thaiairways.com/th-th/", { external: true });
-    } else if (locale.value === "en") {
-      navigateTo("https://www.thaiairways.com/en-th/", { external: true });
-    } else {
-      navigateTo("https://www.thaiairways.com/zh-hk/", { external: true });
-    }
+    })
+      .then((response) => response.json()) // ถ้าเซิร์ฟเวอร์ตอบกลับ JSON
+      .then((data) => {
+        console.log(data); // ตรวจสอบข้อมูลการตอบกลับ
+        if (data.success) {
+          console.log("Login successful!");
+        } else {
+          console.log("Login failed:", data.message);
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+    // if (locale.value === "th") {
+    //   navigateTo("https://www.thaiairways.com/th-th/", { external: true });
+    // } else if (locale.value === "en") {
+    //   navigateTo("https://www.thaiairways.com/en-th/", { external: true });
+    // } else {
+    //   navigateTo("https://www.thaiairways.com/zh-hk/", { external: true });
+    // }
   }
 };
 
