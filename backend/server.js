@@ -59,7 +59,7 @@ app.post("/api/login", async (req, res) => {
     await api.connect("10.50.0.1", "tgguest", "tgguest"); // MikroTik API credentials
 
     // เช็ค IP address ของผู้ใช้ใน MikroTik Hotspot
-    const users = await api.write("/ip/hotspot/users/print");
+    const users = await api.write("/ip/hotspot/user/print");
 
     const user = users.find(
       (user) => user.name === "TGLE1" && user.password === "tgl1234"
