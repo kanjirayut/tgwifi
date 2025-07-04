@@ -1,6 +1,7 @@
 // backend/server.js
 const express = require("express");
 const cors = require("cors");
+const RouterOSAPI = require("routeros-api");
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 const app = express();
@@ -14,6 +15,9 @@ app.use(
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+// Connect to MikroTik API
+const api = RouterOSAPI;
 
 // Route ตัวอย่าง
 app.get("/api/log", async (req, res) => {
@@ -44,6 +48,39 @@ app.post("/api/log", async (req, res) => {
       status: false, // สถานะผิดพลาด
       code: 500, // รหัสข้อผิดพลาด HTTP 500
     });
+  }
+});
+
+// API endpoint to login user
+app.post("/api/login", async (req, res) => {
+  const { ip_address } = req.body;
+
+  try {
+    await api.connect("10.50.0.1", "tgguest", "tgguest"); // MikroTik API credentials
+
+    // เช็ค IP address ของผู้ใช้ใน MikroTik Hotspot
+    const users = await api.write("/ip/hotspot/user/print");
+
+    const user = users.find((user) => user.address === ip_address);
+
+    if (user) {
+      // ถ้ามี IP นี้ใน MikroTik ให้อนุญาต
+      await api.write("/ip/hotspot/user/set", {
+        ".id": user[".id"],
+        disabled: false,
+      });
+      res.json({ success: true, message: "Login successful" });
+    } else {
+      res.json({
+        success: false,
+        message: "IP not found in Hotspot user list",
+      });
+    }
+
+    api.disconnect();
+  } catch (error) {
+    console.error("Error logging in:", error);
+    res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 });
 
