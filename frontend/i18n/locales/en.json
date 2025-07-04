@@ -1,5 +1,5 @@
 {
-  "welcome": "Welcome to Wi-Fi",
+  "welcome": "Please fill in the information before using.",
   "action_button": "Confirm",
   "firstname": "Name",
   "lastname": "Surname",
@@ -7,5 +7,6 @@
   "passwordInput": "Password",
   "usernamePlaceholder": "Enter your username",
   "passwordPlaceholder": "Enter your password",
-  "confirmCheckbox": " I have accepted the terms of service."
+  "confirmCheckbox": " I have accepted the terms of service.",
+  "privacyNotice": "Privacy Notice"
 }

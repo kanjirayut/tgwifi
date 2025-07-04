@@ -1,5 +1,5 @@
 {
-  "welcome": "ยินดีต้อนรับสู่ Wi-Fi",
+  "welcome": "กรุณากรอกข้อมูลก่อนใช้งาน",
   "action_button": "ยืนยัน",
   "firstname": "ชื่อ",
   "lastname": "นามสกุล",
@@ -7,5 +7,6 @@
   "passwordInput": "รหัสผ่าน",
   "usernamePlaceholder": "ระบุชื่อผู้ใช้งาน",
   "passwordPlaceholder": "ระยุรหัสผ่าน",
-  "confirmCheckbox": "ข้าพเจ้าได้ยอมรับเงื่อนไขการให้บริการ"
+  "confirmCheckbox": "ข้าพเจ้าได้ยอมรับเงื่อนไขการให้บริการ",
+  "privacyNotice": "นโยบายการคุ้มครองข้อมูลส่วนบุคคล"
 }

@@ -1,9 +1,12 @@
 {
-  "welcome": "欢迎使用Wi-Fi",
+  "welcome": "请在使用前填写信息",
   "action_button": "接下来",
+  "firstname": "名字",
+  "lastname": "姓氏",
   "usernameInput": "用户名",
   "passwordInput": "密码",
   "usernamePlaceholder": "输入您的用户名",
   "passwordPlaceholder": "输入您的密码",
-  "confirmCheckbox": "我已接受服务条款."
+  "confirmCheckbox": "我已接受服务条款.",
+  "privacyNotice": "隐私声明"
 }
