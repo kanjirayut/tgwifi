@@ -199,7 +199,7 @@ const handleCheckboxChange = () => {
 </template>
 
 <style>
-button:disabled {
+/* button:disabled {
   background-color: antiquewhite;
-}
+} */
 </style>
