@@ -59,22 +59,21 @@ app.post("/api/login", async (req, res) => {
     await api.connect("10.50.0.1", "tgguest", "tgguest"); // MikroTik API credentials
 
     // เช็ค IP address ของผู้ใช้ใน MikroTik Hotspot
-    const users = await api.write("/ip/hotspot/user/print");
+    const users = await api.write("/ip/hotspot/users/print");
 
-    const user = users.find((user) => user.address === ip_address);
+    const user = users.find(
+      (user) => user.name === "TGLE1" && user.password === "tgl1234"
+    );
 
     if (user) {
-      // ถ้ามี IP นี้ใน MikroTik ให้อนุญาต
-      await api.write("/ip/hotspot/user/set", {
+      // Enable user after login
+      await API.write("/ip/hotspot/user/set", {
         ".id": user[".id"],
         disabled: false,
       });
-      res.json({ success: true, message: "Login successful" });
+      res.json({ success: true });
     } else {
-      res.json({
-        success: false,
-        message: "IP not found in Hotspot user list",
-      });
+      res.json({ success: false });
     }
 
     api.disconnect();
