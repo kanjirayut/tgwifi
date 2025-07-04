@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-
 const { locales, setLocale, locale } = useI18n();
 
 const switchLanguage = (code: any) => {
@@ -35,13 +34,14 @@ const onSubmit = async () => {
     }),
   });
   if (res?.status) {
-    await fetch(`${useRuntimeConfig().public.apiUrl}/api/login`, {
+    await fetch(`https://1.179.203.188/login.php`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        ip_address: ip.value,
+        username: "TGLE1",
+        password: "tgl1234",
       }),
     });
     if (locale.value === "th") {

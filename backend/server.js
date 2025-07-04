@@ -53,16 +53,19 @@ app.post("/api/log", async (req, res) => {
 
 // API endpoint to login user
 app.post("/api/login", async (req, res) => {
+  const { ip_address } = req.body;
+  console.log(ip_address);
   try {
     // await api.connect("10.50.0.1", "tgguest", "tgguest"); // MikroTik API credentials
 
-    const API = new RouterOSAPI({
+    const API = RouterOSAPI.connect({
       host: "10.50.0.1",
-      user: "tgguest", // ใส่ชื่อผู้ใช้ที่ใช้เชื่อมต่อ MikroTik
-      password: "tgguest", // ใส่รหัสผ่าน
+      user: "TGLE1", // Username for MikroTik
+      password: "tgl1234", // Password for MikroTik
     });
+    console.log(API);
 
-    API.connect().then(async () => {
+    API.then(async () => {
       // คำสั่งนี้จะดึงข้อมูลของผู้ใช้ที่เชื่อมต่อในระบบ Hotspot
       API.write("/ip/hotspot/active/print", async (err, data) => {
         if (err) {
