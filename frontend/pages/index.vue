@@ -37,8 +37,10 @@ const onSubmit = async () => {
   if (res?.status) {
     if (locale.value === "th") {
       navigateTo("https://www.thaiairways.com/th-th/", { external: true });
-    } else {
+    } else if (locale.value === "en") {
       navigateTo("https://www.thaiairways.com/en-th/", { external: true });
+    } else {
+      navigateTo("https://www.thaiairways.com/zh-hk/", { external: true });
     }
   }
 };
@@ -176,7 +178,9 @@ const handleCheckboxChange = () => {
           :href="
             locale === 'th'
               ? 'https://www.thaiairways.com/th-th/content/privacy-notice/'
-              : 'https://www.thaiairways.com/en-th/content/privacy-notice/'
+              : locale === 'en'
+              ? 'https://www.thaiairways.com/en-th/content/privacy-notice/'
+              : 'https://www.thaiairways.com/zh-hk/content/privacy-notice/'
           "
           target="_blank"
           class="text-white ms-3"
