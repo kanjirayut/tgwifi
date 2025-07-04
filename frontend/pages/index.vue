@@ -44,13 +44,13 @@ const onSubmit = async () => {
         ip_address: ip.value,
       }),
     });
-    // if (locale.value === "th") {
-    //   navigateTo("https://www.thaiairways.com/th-th/", { external: true });
-    // } else if (locale.value === "en") {
-    //   navigateTo("https://www.thaiairways.com/en-th/", { external: true });
-    // } else {
-    //   navigateTo("https://www.thaiairways.com/zh-hk/", { external: true });
-    // }
+    if (locale.value === "th") {
+      navigateTo("https://www.thaiairways.com/th-th/", { external: true });
+    } else if (locale.value === "en") {
+      navigateTo("https://www.thaiairways.com/en-th/", { external: true });
+    } else {
+      navigateTo("https://www.thaiairways.com/zh-hk/", { external: true });
+    }
   }
 };
 
